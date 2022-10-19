@@ -2,7 +2,7 @@
 
 Creates a constinuous vertical slider with color customizations. 
 
-
+![filtering](https://github.com/sqlinsights/streamlit-vertical-slider/blob/main/sample.gif?raw=true)
 
 ## Installation
 ```shell
