@@ -3,6 +3,7 @@
 Creates a constinuous vertical slider with color customizations. 
 
 
+
 ## Installation
 ```shell
 pip install streamlit-vertical-slider
