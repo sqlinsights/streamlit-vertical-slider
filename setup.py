@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="streamlit_vertical_slider",
-    version="1.0",
+    version="1.0.2",
     author="Carlos D. Serrano",
     author_email="sqlinsights@gmail.com",
     description="Creates a customizable vertical slider",

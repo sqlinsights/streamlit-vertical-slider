@@ -4,6 +4,20 @@ Creates a constinuous vertical slider with color customizations.
 
 ![filtering](https://github.com/sqlinsights/streamlit-vertical-slider/blob/main/sample.gif?raw=true)
 
+---
+## Update ⚠️
+Version 1.0.2 fixes an issue where frontend/build folder was excluded from wheel. 
+Please update by:
+```shell
+pip install streamlit-vertical-slider==1.0.2
+```
+or 
+
+```shell
+pip install --upgrade streamlit-vertical-slider
+```
+
+---
 ## Installation
 ```shell
 pip install streamlit-vertical-slider

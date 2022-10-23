@@ -35,3 +35,6 @@ for idx, i in enumerate(groups):
         adjusted_data.append((i[0],sliders[f'slider_group_{key}'] ))
 df = pd.DataFrame(adjusted_data, columns=['Date','Value'])
 st.line_chart(df, x='Date', y='Value')
+
+
+svs.vertical_slider(key='jkdhdkdhs', default_value=20, step=1, min_value=1, max_value=35, thumb_color="black", slider_color="red", track_color="grey")
