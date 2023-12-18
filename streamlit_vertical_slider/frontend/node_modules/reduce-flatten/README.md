@@ -5,32 +5,25 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 <a name="module_reduce-flatten"></a>
+
 ## reduce-flatten
 Flatten an array into the supplied array.
 
-  
-**Example**
+**Example**  
 ```js
-var flatten = require('reduce-flatten')
+const flatten = require('reduce-flatten')
 ```
-
-
 <a name="exp_module_reduce-flatten--flatten"></a>
+
 ### flatten() ⏏
 **Kind**: Exported function  
-
-
-
-**Example**
+**Example**  
 ```js
 > numbers = [ 1, 2, [ 3, 4 ], 5 ]
 > numbers.reduce(flatten, [])
 [ 1, 2, 3, 4, 5 ]
 ```
 
-
-
-
 * * *
 
-&copy; 2016 Lloyd Brookes <75pound@gmail.com>. Documented by [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown).
+&copy; 2016-18 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown).

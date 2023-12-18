@@ -1,7 +1,8 @@
 [![view on npm](http://img.shields.io/npm/v/typical.svg)](https://www.npmjs.org/package/typical)
 [![npm module downloads](http://img.shields.io/npm/dt/typical.svg)](https://www.npmjs.org/package/typical)
 [![Build Status](https://travis-ci.org/75lb/typical.svg?branch=master)](https://travis-ci.org/75lb/typical)
-[![Dependency Status](https://david-dm.org/75lb/typical.svg)](https://david-dm.org/75lb/typical)
+[![Coverage Status](https://coveralls.io/repos/github/75lb/typical/badge.svg?branch=master)](https://coveralls.io/github/75lb/typical?branch=master)
+[![Dependency Status](https://badgen.net/david/dep/75lb/typical)](https://david-dm.org/75lb/typical)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 <a name="module_typical"></a>
@@ -71,15 +72,23 @@ A plain object is a simple object literal, it is not an instance of a class. Ret
 
 **Example**  
 ```js
-> t.isPlainObject({ clive: 'hater' })
+> t.isPlainObject({ something: 'one' })
 true
 > t.isPlainObject(new Date())
 false
 > t.isPlainObject([ 0, 1 ])
 false
+> t.isPlainObject(/test/)
+false
 > t.isPlainObject(1)
 false
-> t.isPlainObject(/test/)
+> t.isPlainObject('one')
+false
+> t.isPlainObject(null)
+false
+> t.isPlainObject((function * () {})())
+false
+> t.isPlainObject(function * () {})
 false
 ```
 <a name="module_typical.isArrayLike"></a>
@@ -191,7 +200,7 @@ Returns true if the input is a Promise.
 <a name="module_typical.isIterable"></a>
 
 ### t.isIterable(input) ⇒ <code>boolean</code>
-Returns true if the input is an iterable (`Map`, `Set`, `Array` etc.).
+Returns true if the input is an iterable (`Map`, `Set`, `Array`, Generator etc.).
 
 **Kind**: static method of [<code>typical</code>](#module_typical)  
 
@@ -199,7 +208,70 @@ Returns true if the input is an iterable (`Map`, `Set`, `Array` etc.).
 | --- | --- | --- |
 | input | <code>\*</code> | the input to test |
 
+**Example**  
+```js
+> t.isIterable('string')
+true
+> t.isIterable(new Map())
+true
+> t.isIterable([])
+true
+> t.isIterable((function * () {})())
+true
+> t.isIterable(Promise.resolve())
+false
+> t.isIterable(Promise)
+false
+> t.isIterable(true)
+false
+> t.isIterable({})
+false
+> t.isIterable(0)
+false
+> t.isIterable(1.1)
+false
+> t.isIterable(NaN)
+false
+> t.isIterable(Infinity)
+false
+> t.isIterable(function () {})
+false
+> t.isIterable(Date)
+false
+> t.isIterable()
+false
+> t.isIterable({ then: function () {} })
+false
+```
+
+## Load anywhere
+
+This library is compatible with Node.js, the Web and any style of module loader. It can be loaded anywhere, natively without transpilation.
+
+Node.js:
+
+```js
+const typical = require('typical')
+```
+
+Within Node.js with ECMAScript Module support enabled:
+
+```js
+import typical from 'typical'
+```
+
+Within a modern browser ECMAScript Module:
+
+```js
+import typical from './node_modules/typical/index.mjs'
+```
+
+Old browser (adds `window.typical`):
+
+```html
+<script nomodule src="./node_modules/typical/dist/index.js"></script>
+```
 
 * * *
 
-&copy; 2014-17 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown).
+&copy; 2014-19 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown).

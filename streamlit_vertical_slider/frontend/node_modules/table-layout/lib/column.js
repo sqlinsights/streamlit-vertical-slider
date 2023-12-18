@@ -1,4 +1,3 @@
-'use strict'
 const t = require('typical')
 const Padding = require('./padding')
 

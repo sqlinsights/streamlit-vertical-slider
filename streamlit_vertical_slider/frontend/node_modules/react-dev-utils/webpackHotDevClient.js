@@ -43,14 +43,14 @@ ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
 // See https://github.com/facebook/create-react-app/issues/3096
 var hadRuntimeError = false;
 ErrorOverlay.startReportingRuntimeErrors({
-  onError: function() {
+  onError: function () {
     hadRuntimeError = true;
   },
   filename: '/static/js/bundle.js',
 });
 
 if (module.hot && typeof module.hot.dispose === 'function') {
-  module.hot.dispose(function() {
+  module.hot.dispose(function () {
     // TODO: why do we need this?
     ErrorOverlay.stopReportingRuntimeErrors();
   });
@@ -63,7 +63,7 @@ var connection = new WebSocket(
     hostname: process.env.WDS_SOCKET_HOST || window.location.hostname,
     port: process.env.WDS_SOCKET_PORT || window.location.port,
     // Hardcoded in WebpackDevServer
-    pathname: process.env.WDS_SOCKET_PATH || '/sockjs-node',
+    pathname: process.env.WDS_SOCKET_PATH || '/ws',
     slashes: true,
   })
 );
@@ -71,7 +71,7 @@ var connection = new WebSocket(
 // Unlike WebpackDevServer client, we won't try to reconnect
 // to avoid spamming the console. Disconnect usually happens
 // when developer stops the server.
-connection.onclose = function() {
+connection.onclose = function () {
   if (typeof console !== 'undefined' && typeof console.info === 'function') {
     console.info(
       'The development server has disconnected.\nRefresh the page if necessary.'
@@ -192,7 +192,7 @@ function handleAvailableHash(hash) {
 }
 
 // Handle messages from the server.
-connection.onmessage = function(e) {
+connection.onmessage = function (e) {
   var message = JSON.parse(e.data);
   switch (message.type) {
     case 'hash':
@@ -230,6 +230,18 @@ function canApplyUpdates() {
   return module.hot.status() === 'idle';
 }
 
+function canAcceptErrors() {
+  // NOTE: This var is injected by Webpack's DefinePlugin, and is a boolean instead of string.
+  const hasReactRefresh = process.env.FAST_REFRESH;
+
+  const status = module.hot.status();
+  // React refresh can handle hot-reloading over errors.
+  // However, when hot-reload status is abort or fail,
+  // it indicates the current update cannot be applied safely,
+  // and thus we should bail out to a forced reload for consistency.
+  return hasReactRefresh && ['abort', 'fail'].indexOf(status) === -1;
+}
+
 // Attempt to update code on the fly, fall back to a hard reload.
 function tryApplyUpdates(onHotUpdateSuccess) {
   if (!module.hot) {
@@ -243,7 +255,13 @@ function tryApplyUpdates(onHotUpdateSuccess) {
   }
 
   function handleApplyUpdates(err, updatedModules) {
-    if (err || !updatedModules || hadRuntimeError) {
+    const haveErrors = err || hadRuntimeError;
+    // When there is no error but updatedModules is unavailable,
+    // it indicates a critical failure in hot-reloading,
+    // e.g. server is not ready to serve new bundle,
+    // and hence we need to do a forced reload.
+    const needsForcedReload = !err && !updatedModules;
+    if ((haveErrors && !canAcceptErrors()) || needsForcedReload) {
       window.location.reload();
       return;
     }
@@ -265,10 +283,10 @@ function tryApplyUpdates(onHotUpdateSuccess) {
   // // webpack 2 returns a Promise instead of invoking a callback
   if (result && result.then) {
     result.then(
-      function(updatedModules) {
+      function (updatedModules) {
         handleApplyUpdates(null, updatedModules);
       },
-      function(err) {
+      function (err) {
         handleApplyUpdates(err, null);
       }
     );

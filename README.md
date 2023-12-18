@@ -2,17 +2,23 @@
 
 Creates a constinuous vertical slider with color customizations. 
 
-![filtering](https://github.com/sqlinsights/streamlit-vertical-slider/blob/main/sample.gif?raw=true)
-
 ---
 ## Update ⚠️
-Version 1.0.2 fixes an issue where frontend/build folder was excluded from wheel. 
-Please update by:
-```shell
-pip install streamlit-vertical-slider==1.0.2
-```
-or 
+### Version 2.0  
+Changes:
+ - Adds optional `label` argument
+ - Adds optional `thumb_shape` argument (circle, square, pill)
+ - Adds optional `height` argument, defaults to 200
+ - Upgrade to Material-UI v5
+ - Centralized labels and values
+ - Support for Dark Mode
 
+
+![light](light.png)
+
+![dark](dark.png)
+
+Please update by:
 ```shell
 pip install --upgrade streamlit-vertical-slider
 ```
@@ -26,15 +32,20 @@ pip install streamlit-vertical-slider
 
 ```python
 import streamlit as st
-import  streamlit_vertical_slider  as svs
+from  streamlit_vertical_slider import vertical_slider 
 
-svs.vertical_slider(key=key, 
-                    default_value=i[1], 
-                    step=1,
-                    min_value=min_value, 
-                    max_value=max_value,
-                    track_color="gray",
-                    thumb_color="black",
-                    slider_color="red"
-                    )
+vertical_slider(
+    label = "Your widget label",  #Optional
+    key = "vert_01" ,
+    height = 300, #Optional - Defaults to 300
+    thumb_shape = "square", #Optional - Defaults to "circle"
+    step = 1, #Optional - Defaults to 1
+    default_value=5 ,#Optional - Defaults to 0
+    min_value= 0, # Defaults to 0
+    max_value= 10, # Defaults to 10
+    track_color = "blue", #Optional - Defaults to #D3D3D3
+    slider_color = 'lighgray', #Optional - Defaults to #29B5E8
+    thumb_color= "orange", #Optional - Defaults to #11567f
+    value_always_visible = True ,#Optional - Defaults to False
+)
 ```

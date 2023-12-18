@@ -1,5 +1,3 @@
-'use strict'
-
 const ansiEscapeSequence = /\u001b.*?m/g
 
 /**

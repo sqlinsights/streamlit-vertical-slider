@@ -1,4 +1,3 @@
-'use strict'
 const arrayify = require('array-back')
 const Cell = require('./cell')
 const t = require('typical')
@@ -29,7 +28,7 @@ class Rows {
     const emptyColumns = distinctColumnNames.filter(columnName => {
       const hasValue = data.some(row => {
         const value = row[columnName]
-        return (t.isDefined(value) && !t.isString(value)) || (t.isString(value) && /\S+/.test(value))
+        return (t.isDefined(value) && typeof value !== 'string') || (typeof value === 'string' && /\S+/.test(value))
       })
       return !hasValue
     })

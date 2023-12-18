@@ -1,4 +1,3 @@
-'use strict'
 const t = require('typical')
 
 const _value = new WeakMap()
@@ -16,7 +15,7 @@ class Cell {
 
   get value () {
     let cellValue = _value.get(this)
-    if (t.isFunction(cellValue)) cellValue = cellValue.call(_column.get(this))
+    if (typeof cellValue === 'function') cellValue = cellValue.call(_column.get(this))
     if (cellValue === undefined) {
       cellValue = ''
     } else {

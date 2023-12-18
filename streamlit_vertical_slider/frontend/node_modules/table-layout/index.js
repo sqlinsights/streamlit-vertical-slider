@@ -1,4 +1,3 @@
-'use strict'
 const os = require('os')
 
 /**
@@ -22,7 +21,6 @@ const os = require('os')
  *  layout
  */
 class Table {
-
   /**
    * @param {object[]} - input data
    * @param [options] {object} - optional settings
@@ -177,12 +175,10 @@ function getLongestArray (arrays) {
 
 function padCell (cellValue, padding, width) {
   const ansi = require('./lib/ansi')
-  const padEnd = require('lodash.padend')
   var ansiLength = cellValue.length - ansi.remove(cellValue).length
   cellValue = cellValue || ''
   return (padding.left || '') +
-  padEnd(cellValue, width - padding.length() + ansiLength) +
-  (padding.right || '')
+  cellValue.padEnd(width - padding.length() + ansiLength) + (padding.right || '')
 }
 
 /**

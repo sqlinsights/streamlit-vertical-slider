@@ -1,4 +1,3 @@
-'use strict'
 const t = require('typical')
 const arrayify = require('array-back')
 const Column = require('./column')

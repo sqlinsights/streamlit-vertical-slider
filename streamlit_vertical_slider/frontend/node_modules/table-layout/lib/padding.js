@@ -1,5 +1,3 @@
-'use strict'
-
 class Padding {
   constructor (padding) {
     this.left = padding.left

@@ -1,8 +1,4 @@
-require('../../modules/es.array.iterator');
-require('../../modules/es.object.to-string');
-require('../../modules/es.promise');
-require('../../modules/es.string.iterator');
-require('../../modules/esnext.array.from-async');
-var path = require('../../internals/path');
+'use strict';
+var parent = require('../../actual/array/from-async');
 
-module.exports = path.Array.fromAsync;
+module.exports = parent;

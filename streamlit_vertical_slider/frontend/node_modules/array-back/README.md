@@ -8,45 +8,74 @@
 <a name="module_array-back"></a>
 
 ## array-back
+Takes any input and guarantees an array back.
+
+- Converts array-like objects (e.g. `arguments`, `Set`) to a real array.
+- Converts `undefined` to an empty array.
+- Converts any another other, singular value (including `null`, objects and iterables other than `Set`) into an array containing that value.
+- Ignores input which is already an array.
+
 **Example**  
 ```js
-const arrayify = require('array-back')
+> const arrayify = require('array-back')
+
+> arrayify(undefined)
+[]
+
+> arrayify(null)
+[ null ]
+
+> arrayify(0)
+[ 0 ]
+
+> arrayify([ 1, 2 ])
+[ 1, 2 ]
+
+> arrayify(new Set([ 1, 2 ]))
+[ 1, 2 ]
+
+> function f(){ return arrayify(arguments); }
+> f(1,2,3)
+[ 1, 2, 3 ]
 ```
 <a name="exp_module_array-back--arrayify"></a>
 
 ### arrayify(input) ⇒ <code>Array</code> ⏏
-Takes any input and guarantees an array back.
-
-- converts array-like objects (e.g. `arguments`) to a real array
-- converts `undefined` to an empty array
-- converts any another other, singular value (including `null`) into an array containing that value
-- ignores input which is already an array
-
 **Kind**: Exported function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| input | <code>\*</code> | the input value to convert to an array |
+| input | <code>\*</code> | The input value to convert to an array |
 
-**Example**  
+
+### Load anywhere
+
+This library is compatible with Node.js, the Web and any style of module loader. It can be loaded anywhere, natively without transpilation.
+
+Node.js:
+
 ```js
-> a.arrayify(undefined)
-[]
+const arrayify = require('array-back')
+```
 
-> a.arrayify(null)
-[ null ]
+Within Node.js with ECMAScript Module support enabled:
 
-> a.arrayify(0)
-[ 0 ]
+```js
+import arrayify from 'array-back'
+```
 
-> a.arrayify([ 1, 2 ])
-[ 1, 2 ]
+Within an modern browser ECMAScript Module:
 
-> function f(){ return a.arrayify(arguments); }
-> f(1,2,3)
-[ 1, 2, 3 ]
+```js
+import arrayify from './node_modules/array-back/index.mjs'
+```
+
+Old browser (adds `window.arrayBack`):
+
+```html
+<script nomodule src="./node_modules/array-back/dist/index.js"></script>
 ```
 
 * * *
 
-&copy; 2015-17 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
+&copy; 2015-19 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
