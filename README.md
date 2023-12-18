@@ -14,9 +14,9 @@ Changes:
  - Support for Dark Mode
 
 
-![light](light.png)
+![light](https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/light.png)
 
-![dark](dark.png)
+![dark](https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/dark.png)
 
 Please update by:
 ```shell

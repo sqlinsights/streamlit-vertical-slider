@@ -7,7 +7,7 @@ import streamlit_toggle as sts
 from typing import Literal
 
 
-_RELEASE = False
+_RELEASE = True
 
 if not _RELEASE:
     _component_func = components.declare_component(
