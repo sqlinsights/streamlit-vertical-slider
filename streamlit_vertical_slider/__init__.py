@@ -29,12 +29,12 @@ def vertical_slider(
     key: str = None,
     height: int = 200,
     thumb_shape: shape_types = "circle",
-    step: int = 1,
-    default_value: int = 0,
-    min_value: int = 0,
-    max_value: int = 10,
+    step: [int, float] = 1,
+    default_value: [int, float] = 0,
+    min_value: [int, float] = 0,
+    max_value: [int, float] = 10,
     track_color: str = "#D3D3D3",
-    slider_color: str = "#29B5E8",
+    slider_color: [str, tuple] = "#29B5E8",
     thumb_color: str = "#11567f",
     value_always_visible: bool = True,
 ):
@@ -43,19 +43,26 @@ def vertical_slider(
         default_value = min_value
 
     if thumb_shape == "circle":
-        thumb_height = ("none",)
+        thumb_height = ("0.75rem",)
         thumb_style = ("inherit",)
         thumb_color = thumb_color
     if thumb_shape == "square":
-        thumb_height = ("none",)
+        thumb_height = ("0.75rem",)
         thumb_style = ("1px",)
         thumb_color = thumb_color
     if thumb_shape == "pill":
-        thumb_height = ("10px",)
-        thumb_style = ("5px",)
+        thumb_height = ("0.35rem",)
+        thumb_style = ("0.25rem",)
         thumb_color = thumb_color
+    if type(slider_color) == tuple:
+        gradient_colors = ",".join(slider_color)
+        slider_color = f"linear-gradient({gradient_colors})"
+        track_color = slider_color
+        opacity = 0
+    else:
+        opacity = 100
 
-    label_display = "auto" if not value_always_visible else "on"
+    label_display = "auto" if not value_always_visible else True
 
     vertical_slider_value = _component_func(
         label=label,
@@ -71,9 +78,10 @@ def vertical_slider(
         thumb_height=thumb_height,
         thumb_style=thumb_style,
         slider_color=slider_color,
+        opacity=opacity,
         value_always_visible=label_display,
     )
-    return vertical_slider_value
+    return vertical_slider_value if vertical_slider_value else default_value
 
 
 if not _RELEASE:
@@ -82,7 +90,7 @@ if not _RELEASE:
     st.set_page_config(layout="wide")
     st.subheader("Vertical Slider")
 
-bottom_cols = st.columns(7)
+bottom_cols = st.columns(15)
 with bottom_cols[0]:
     tst = vertical_slider(
         label="Default Style",
@@ -94,6 +102,7 @@ with bottom_cols[0]:
         max_value=1500,
         value_always_visible=False,
     )
+
 
 with bottom_cols[1]:
     tst = vertical_slider(
@@ -169,5 +178,19 @@ with bottom_cols[6]:
         step=1,
         min_value=0,
         max_value=1500,
+        value_always_visible=False,
+    )
+with bottom_cols[7]:
+    flt_tst = vertical_slider(
+        label="Gradient",
+        thumb_color="Red",
+        track_color="gray",
+        slider_color=("blue", "red"),
+        height=200,
+        key="test_gradient",
+        default_value=150.098,
+        step=0.09,
+        min_value=0,
+        max_value=25.500,
         value_always_visible=False,
     )

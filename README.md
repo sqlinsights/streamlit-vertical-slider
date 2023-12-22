@@ -4,6 +4,14 @@ Creates a constinuous vertical slider with color customizations.
 
 ---
 ## Update ⚠️
+
+### Version 2.5
+- Fixed issue where default value was not been sent back to Streamlit
+- Refactor label into a tooltip reducing the width of the widget by 30%
+- Adjusted default size of track, rail and thumb to match Streamlit's native slider.
+- Slider Color can now be a tuple in order to create a gradient. 
+- Matched the label style to native Streamlit slider label. 
+
 ### Version 2.0  
 Changes:
  - Adds optional `label` argument
@@ -17,6 +25,8 @@ Changes:
 ![light](https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/light.png)
 
 ![dark](https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/dark.png)
+
+![sample](https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/sample.gif)
 
 Please update by:
 ```shell
@@ -44,7 +54,7 @@ vertical_slider(
     min_value= 0, # Defaults to 0
     max_value= 10, # Defaults to 10
     track_color = "blue", #Optional - Defaults to #D3D3D3
-    slider_color = 'lighgray', #Optional - Defaults to #29B5E8
+    slider_color = ('red','blue'), #Optional - Defaults to #29B5E8
     thumb_color= "orange", #Optional - Defaults to #11567f
     value_always_visible = True ,#Optional - Defaults to False
 )
