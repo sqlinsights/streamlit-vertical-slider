@@ -24,7 +24,7 @@ Changes:
 
 ![light](https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/light.png)
 
-![dark](https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/dark.png)
+![dark](https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/dark_mode.png)
 
 ![sample](https://github.com/sqlinsights/streamlit-vertical-slider/raw/main/sample.gif)
 
