@@ -33,10 +33,10 @@ def vertical_slider(
     default_value: [int, float] = 0,
     min_value: [int, float] = 0,
     max_value: [int, float] = 10,
-    track_color: str = "#D3D3D3",
-    slider_color: [str, tuple] = "#29B5E8",
-    thumb_color: str = "#11567f",
-    value_always_visible: bool = True,
+    track_color: str = "#E5E9F1",
+    slider_color: [str, tuple] = "#FF4B4B",
+    thumb_color: str = "#FF4B4B",
+    value_always_visible: bool = False,
 ):
     assert thumb_shape in ["circle", "square", "pill"]
     if default_value < min_value:

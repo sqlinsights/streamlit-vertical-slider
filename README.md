@@ -53,9 +53,9 @@ vertical_slider(
     default_value=5 ,#Optional - Defaults to 0
     min_value= 0, # Defaults to 0
     max_value= 10, # Defaults to 10
-    track_color = "blue", #Optional - Defaults to #D3D3D3
-    slider_color = ('red','blue'), #Optional - Defaults to #29B5E8
-    thumb_color= "orange", #Optional - Defaults to #11567f
+    track_color = "blue", #Optional - Defaults to Streamlit Red
+    slider_color = ('red','blue'), #Optional
+    thumb_color= "orange", #Optional - Defaults to Streamlit Red
     value_always_visible = True ,#Optional - Defaults to False
 )
 ```
