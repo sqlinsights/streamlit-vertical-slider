@@ -3,7 +3,6 @@ from idna import valid_contextj
 import streamlit.components.v1 as components
 import streamlit as st
 import altair as alt
-import streamlit_toggle as sts
 from typing import Literal
 
 
